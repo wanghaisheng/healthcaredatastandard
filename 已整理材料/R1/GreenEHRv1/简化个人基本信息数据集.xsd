@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="扩展数据类型.xsd"/>
+	<xs:element name="个人基本信息" type="个人基本信息type"/>
+	<xs:complexType name="个人基本信息type">
+		<xs:sequence>
+			<xs:element name="城乡居民健康档案信息" type="城乡居民健康档案type"/>
+			<xs:element name="居民基础信息" type="居民基础信息type"/>
+			<xs:element name="居民基本健康信息" type="居民基本健康信息type"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="城乡居民健康档案type">
+		<xs:sequence>
+			<xs:element name="城乡居民健康档案编号" type="城乡居民健康档案编号type"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="居民基础信息type">
+		<xs:sequence>
+			<xs:element name="居民人口学信息" type="居民人口学信息type"/>
+			<xs:element name="居民社会经济学信息" type="居民社会经济学信息type"/>
+			<xs:element name="联系人信息" type="联系人信息type"/>
+			<xs:element name="家庭基本设施情况" type="家庭基本设施情况type"/>
+			<xs:element name="居民社会保障信息" type="居民社会保障信息type"/>			
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="居民人口学信息type">
+		<xs:sequence>
+			<xs:element name="本人姓名" type="本人姓名type"/>
+			<xs:element name="出生日期" type="D8"/>
+			<xs:element name="婚姻状况类别代码" type="类别代码type"/>
+			<xs:element name="民族" type="类别代码type"/>
+			<xs:element name="身份证件号码" type="身份证件号码type"/>
+			<xs:element name="身份证件类别代码" type="类别代码type"/>
+			<xs:element name="性别代码" type="类别代码type"/>
+			<xs:element name="学历代码" type="类别代码type"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="居民社会经济学信息type">
+		<xs:sequence>
+			<xs:element name="本人电话号码" type="本人电话号码type"/>
+			<xs:element name="常住地址户籍标志" type="xs:boolean"/>
+			<xs:element name="工作单位名称" type="工作单位名称type"/>
+			<xs:element name="职业类别代码" type="类别代码type"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="联系人信息type">
+		<xs:sequence>
+			<xs:element name="联系人姓名" type="本人姓名type"/>
+			<xs:element name="联系人电话号码" type="本人电话号码type"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="家庭基本设施情况type">
+		<xs:sequence>
+			<xs:element name="家庭厨房排风设施标识" type="xs:boolean"/>
+			<xs:element name="家庭厨房排风设施类别代码" type="类别代码type"/>
+			<xs:element name="家庭燃料类型类别代码" type="类别代码type"/>
+			<xs:element name="家庭饮水类别代码" type="类别代码type"/>
+			<xs:element name="家庭厕所类别代码" type="类别代码type"/>
+			<xs:element name="家庭禽畜栏类别" type="类别代码type"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="居民社会保障信息type">
+		<xs:sequence>
+			<xs:element name="医疗费用支付方式代码" type="类别代码type"/>
+		</xs:sequence>
+	</xs:complexType>	
+	<xs:complexType name="居民基本健康信息type">
+		<xs:sequence>
+			<xs:element name="健康危险因素" type="健康危险因素type"/>
+			<xs:element name="药物过敏史" type="药物过敏史type"/>
+			<xs:element name="血型" type="血型type"/>
+			<xs:element name="输血史" type="输血史type"/>
+			<xs:element name="遗传病史" type="遗传病史type"/>
+			<xs:element name="残疾情况" type="残疾情况type"/>
+			<xs:element name="外伤史" type="外伤史type"/>
+			<xs:element name="既往史" type="既往史type"/>
+			<xs:element name="手术史" type="手术史type"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="健康危险因素type">
+		<xs:sequence>
+			<xs:element name="环境危险因素暴露类别代码" type="类别代码type"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="药物过敏史type">
+		<xs:sequence>
+			<xs:element name="药物过敏史标志" type="xs:boolean"/>
+			<xs:element name="药物过敏源" type="类别代码type"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="血型type">
+		<xs:sequence>
+			<xs:element name="ABO血型代码" type="类别代码type"/>
+			<xs:element name="Rh血型代码" type="类别代码type"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="输血史type">
+		<xs:sequence>
+			<xs:element name="输血史标志" type="xs:boolean"/>
+			<xs:element name="输血原因" type="xs:string"/>
+			<xs:element name="输血日期时间" type="DT15"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="遗传病史type">
+		<xs:sequence>
+			<xs:element name="家族性疾病名称代码" type="类别代码type"/>
+			<xs:element name="患者与本人关系代码" type="类别代码type"/>
+			<xs:element name="遗传性疾病史" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="残疾情况type">
+		<xs:sequence>
+			<xs:element name="残疾情况代码" type="类别代码type"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="外伤史type">
+		<xs:sequence>
+			<xs:element name="外伤史标志" type="xs:boolean"/>
+			<xs:element name="外伤名称" type="xs:string"/>
+			<xs:element name="外伤发生时间" type="DT15"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="既往史type">
+		<xs:sequence>
+			<xs:element name="既往患病种类代码" type="类别代码type"/>
+			<xs:element name="既往患病确诊日期" type="D8"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="手术史type">
+		<xs:sequence>
+			<xs:element name="手术史标志" type="xs:boolean"/>
+			<xs:element name="手术史" type="xs:string"/>
+			<xs:element name="手术操作日期时间" type="DT15"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

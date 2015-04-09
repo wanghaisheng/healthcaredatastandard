@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!--
+	第一段为6位数字，表示县以及县以上的行政区划，统一使用《中华人民共和国行政区划代码》(GB2260)；
+
+　　第二段为3位数字，表示乡镇(街道)级行政区划，按照国家标准《县以下行政区划代码编码规则》(GB/T10114-2003)；
+
+　　第三段为3位数字，表示村(居)民委员会等，具体划分为：001-099表示居委会，101-199表示村委会，901-999表示其他组织；
+
+　　第四段为5位数字，表示居民个人序号，由建档机构根据建档顺序编制。	
+	平凉市
+620801　　　 市直属
+620802　　　 崆峒区
+620821　　　 泾川县
+620822　　　 灵台县
+620823　　　 崇信县
+620824　　　 华亭县
+620825　　　 庄浪县
+620826　　　 静宁县
+	-->
+	<xs:simpleType name="城乡居民健康档案编号type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{17}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="本人姓名type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\w{0,50}"/>
+			<!--匹配中文字符和英文字符
+		(^\p{L}{0,25}$)|(^[\p{Ll}-\p{Lu}]{0,50}$) 在regexBuddy软件中测试成功
+		匹配中文字符
+		^[\u4e00-\u9fa5]{0,25}$
+		匹配中英文字符
+		\w{0,25}
+		\p{L} 匹配任何单个unicode字符，不匹配数字和标点。比如单个英文字母，单个中文汉字。
+		\p{Lu} 匹配任何单个大写unicode字符。比如匹配大写的单个英文字母。注意不匹配中文汉字。
+		\p{Ll} 匹配任何单个小写unicode字符。比如匹配小写的单个英文字母。注意不匹配中文汉字。
+		\p{P} 匹配任何单个标点符号。比如匹配英文标点符号。注意不匹配中文标点符号。
+		\p{S} 匹配任何单个的unicode符号。比如匹配货币符号，数学符号，中文的五角星★等。
+		\p{Sc} 匹配任何单个的unicode货币符号。比如匹配人民币符号￥和美圆符号＄
+		\p{N} 匹配任何单个的unicode数字。比如匹配数字1，中文数字⑴⒈㈠等。注意不匹配1.2。
+		\p{Nd} 匹配任何单个的10进制unicode数字，即只匹配0-9
+		-->
+		</xs:restriction>
+	</xs:simpleType>
+	<!--定义YYYYMMDD格式的日期-->
+	<xs:simpleType name="D8">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})(((0[13578]|1[02])(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)(0[1-9]|[12][0-9]|30))|(02(0[1-9]|[1][0-9]|2[0-8]))))|((([0-9]{2})(0[48]|[2468][048]|[13579][26])|((0[48]|[2468][048]|[3579][26])00))0229)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--定义格式YYYYMMDDThhmmss的日期时间-->
+	<xs:simpleType name="DT15">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})(((0[13578]|1[02])(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)(0[1-9]|[12][0-9]|30))|(02(0[1-9]|[1][0-9]|2[0-8]))))|((([0-9]{2})(0[48]|[2468][048]|[13579][26])|((0[48]|[2468][048]|[3579][26])00))0229))T((([1-9])|([0-1][0-9])|([1-2][0-3]))(([0-5][0-9]))(([0-5][0-9])))"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="类别代码type">
+		<xs:sequence>
+			<xs:element name="值域代码标识" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="值域代码名称" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="版本" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="代码含义" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="代码值" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="身份证件号码type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(\d{6})(18|19|20)?(\d{2})([01]\d)([0123]\d)(\d{3})(\d|X)?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--
+		正则表达式	
+\d{3}-\d{8}|\d{4}-\d{7}
+匹配	  0511-4405222 | 021-87888822
+不匹配	 02-552255 12345-784787
+正则表达式	
+(^\([0]\d{2}|\d{4}\))(\d{6,7}$)
+匹配	 (021)1234567 | (0411)123456 | (000)000000
+不匹配	 (123)1234567 | 025123456 | 0252345678  
+正则表达式	
+^(?<national>\+?(?:86)?)(?<separator>\s?-?)(?<phone>(?<vender>(13|15|18)[0-9])(?<area>\d{4})(?<id>\d{4}))$
+匹配	 手机号
++8613012345678 | 86 13012345678 | 13245679087
+不匹配	 +86130123456781231434352 | 13560012513 | ++8613012345678
+	
+这里国标里面并没有详细的说明 很含糊 只能根据具体情况来定
+	
+
+(13[0-9]|15[0|3|6|7|8|9]|18[8|9])\d{8}
+	-->
+	<xs:simpleType name="本人电话号码type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(\d{3}-\d{8}|\d{4}-\d{7})|((\([0]\d{2}|\d{4}\))(\d{6,7}))|((13[0-9]|15[0|3|6|7|8|9]|18[8|9])\d{8})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="工作单位名称type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\w{0,35}"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

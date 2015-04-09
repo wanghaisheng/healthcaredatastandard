@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="基本数据类型.xsd"/>
+	<xs:complexType name="健康危险因素type">
+		<xs:sequence>
+			<xs:element name="环境危险因素暴露类别代码" type="codeddataelementtype"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="药物过敏史type">
+		<xs:sequence>
+			<xs:element name="药物过敏史标志" type="simpledataelementtype"/>
+			<xs:element name="药物过敏源" type="codeddataelementtype"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="血型type">
+		<xs:sequence>
+			<xs:element name="ABO血型代码" type="codeddataelementtype"/>
+			<xs:element name="Rh血型代码" type="codeddataelementtype"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="输血史type">
+		<xs:sequence>
+			<xs:element name="输血史标志" type="simpledataelementtype"/>
+			<xs:element name="输血原因" type="simpledataelementtype"/>
+			<xs:element name="输血日期时间" type="simpledataelementtype"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="遗传病史type">
+		<xs:sequence>
+			<xs:element name="家族性疾病名称代码" type="codeddataelementtype"/>
+			<xs:element name="患者与本人关系代码" type="codeddataelementtype"/>
+			<xs:element name="遗传性疾病史" type="simpledataelementtype"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="残疾情况type">
+		<xs:sequence>
+			<xs:element name="残疾情况代码" type="codeddataelementtype"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="外伤史type">
+		<xs:sequence>
+			<xs:element name="外伤史标志" type="simpledataelementtype"/>
+			<xs:element name="外伤名称" type="codeddataelementtype"/>
+			<xs:element name="外伤发生时间" type="codeddataelementtype"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="既往史type">
+		<xs:sequence>
+			<xs:element name="既往患病种类代码" type="codeddataelementtype"/>
+			<xs:element name="既往患病确诊日期" type="simpledataelementtype"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="手术史type">
+		<xs:sequence>
+			<xs:element name="手术史标志" type="simpledataelementtype"/>
+			<xs:element name="手术史" type="simpledataelementtype"/>
+			<xs:element name="手术操作日期时间" type="simpledataelementtype"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

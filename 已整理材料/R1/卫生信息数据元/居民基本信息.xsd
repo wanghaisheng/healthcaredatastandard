@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="基本数据类型.xsd"/>
+	<xs:complexType name="居民人口学信息type">
+		<xs:sequence>
+			<xs:element name="本人姓名" type="simpledataelementtype"/>
+			<xs:element name="出生日期" type="simpledataelementtype"/>
+			<xs:element name="婚姻状况类别代码" type="codeddataelementtype"/>
+			<xs:element name="民族" type="codeddataelementtype"/>
+			<xs:element name="身份证件号码" type="simpledataelementtype"/>
+			<xs:element name="身份证件类别代码" type="codeddataelementtype"/>
+			<xs:element name="性别代码" type="codeddataelementtype"/>
+			<xs:element name="学历代码" type="codeddataelementtype"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="居民社会经济学信息type">
+		<xs:sequence>
+			<xs:element name="本人电话号码" type="simpledataelementtype"/>
+			<xs:element name="常住地址户籍标志" type="simpledataelementtype"/>
+			<xs:element name="工作单位名称" type="simpledataelementtype"/>
+			<xs:element name="职业类别代码" type="codeddataelementtype"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="联系人信息type">
+		<xs:sequence>
+			<xs:element name="联系人姓名" type="simpledataelementtype"/>
+			<xs:element name="联系人电话号码" type="simpledataelementtype"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="家庭基本设施情况type">
+		<xs:sequence>
+			<xs:element name="家庭厨房排风设施标识" type="simpledataelementtype"/>
+			<xs:element name="家庭厨房排风设施类别代码" type="codeddataelementtype"/>
+			<xs:element name="家庭燃料类型类别代码" type="codeddataelementtype"/>
+			<xs:element name="家庭饮水类别代码" type="codeddataelementtype"/>
+			<xs:element name="家庭厕所类别代码" type="codeddataelementtype"/>
+			<xs:element name="家庭禽畜栏类别" type="codeddataelementtype"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

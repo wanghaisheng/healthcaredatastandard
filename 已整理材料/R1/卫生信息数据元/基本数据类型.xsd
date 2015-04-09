@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="codeddataelementtype">
+		<xs:sequence>
+			<xs:element name="数据元值" minOccurs="0">
+				<xs:complexType>
+					<xs:attributeGroup ref="codedvalueattrgroup"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attributeGroup ref="simpledataelementattrgroup"/>
+	</xs:complexType>
+	<xs:complexType name="simpledataelementtype">
+		<xs:attributeGroup ref="simpledataelementattrgroup"/>
+	</xs:complexType>
+	<xs:attributeGroup name="simpledataelementattrgroup">
+		<xs:attribute name="内部标识符" type="内部标识符Type"/>
+		<xs:attribute name="数据元标识符" type="数据元标识符Type"/>
+		<xs:attribute name="数据类型" type="数据类型Type"/>
+		<xs:attribute name="表示格式" type="xs:string"/>
+		<xs:attribute name="数据元值" type="xs:string"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="codeddataelementattrgroup">
+		<xs:attribute name="内部标识符" type="内部标识符Type"/>
+		<xs:attribute name="数据元标识符" type="数据元标识符Type"/>
+		<xs:attribute name="数据类型" type="数据类型Type"/>
+		<xs:attribute name="表示格式" type="xs:string"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="codedvalueattrgroup">
+		<xs:attribute name="值域代码标识" type="xs:string"/>
+		<xs:attribute name="值域代码名称" type="xs:string"/>
+		<xs:attribute name="值域代码版本" type="xs:string"/>
+		<xs:attribute name="代码含义" type="xs:string"/>
+		<xs:attribute name="代码值" type="xs:string"/>
+		<xs:attribute name="版本" type="xs:string"/>
+	</xs:attributeGroup>
+	<xs:simpleType name="数据类型Type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="S1"/>
+			<xs:enumeration value="S2"/>
+			<xs:enumeration value="S3"/>
+			<xs:enumeration value="D"/>
+			<xs:enumeration value="T"/>
+			<xs:enumeration value="L"/>
+			<xs:enumeration value="DT"/>
+			<xs:enumeration value="N"/>
+			<xs:enumeration value="BY"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--
+		数据元内部标识符的格式HDSDXX.XX.XXX其中X表示0-9的数字。
+		城乡居民健康档案数据集共18个，数据集标识符为HDSD00.01。范围为HDSD00.01.XXX到HDSD00.01.XXX
+		弄清楚每个数据集中XX.XX.XXX的范围，例如个人基本信息数据集中内部标识符为HDSD00.01.001到HDSD00.01.042这样就可以判断是否提供了正确的内部标识符
+	-->
+	<xs:simpleType name="内部标识符Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="HDSD00\.01\.[0-9]{3}"/>
+		</xs:restriction>			
+	</xs:simpleType>
+	<xs:simpleType name="数据元标识符Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="DE((01\.00\.((00[1-9])|(01[0-5]))\.00)|(02\.01\.((((00[1-4])|(00[6-8])|(0[1-4][0-9])|(05[0-8]))\.00)|(005\.0[1-2])|(009.0[1-6])))|(02\.10\.((00[1-9])|(0[1-8][0-9])|(09[0-6]))\.00)|(03\.00\.((00[1-9])|(0[1-9][0-9]))\.00)|(04\.01\.((00[1-9])|(0[1-9][0-9])|(1[0-1][0-9])|(120))\.00)|(04\.10\.((00[1-9])|(0[1-9][0-9])|(1[0-9]{2})|2[0-3][0-9]|(24[0-3]))\.00)|(04\.30\.0((0[1-9])|([1-4][0-9])|(5[0-1]))\.00)|(04\.50\.((00[1-9])|([0-1][1-9][0-9]|(1[0-1][0-9]|(12[0-9]))))\.00)|(05\.01\.((00[1-9])|(0[1-6][0-9]|(0[1-6][0-9])|(07[0-3])))\.00)|(05\.10\.((00[1-9])|(0[1-9][0-9])|(1[0-1][0-9])|(12[0-8]))\.00)|(06\.00\.((00[1-9])|(0[1-9][0-9])|(1[0-6][0-9])|(17[0-7]))\.00)|(07\.00\.((00[1-9])|(010))\.00)|(08\.10\.((00[1-9])|(0[1-4][0-9])|(05[0-3]))\.00)|(08\.30.((00[1-9])|(0[1-2][0-9])|(03[0-1]))\.00)|(08\.50\.((00[1-9])|(01[0-9])|(02[0-5]))\.00)|(09\.00\.((00[1-9])|(0[1-9][0-9])|(10[0-2]))\.00))"/>
+		</xs:restriction>			
+	</xs:simpleType>	
+	<!--
+		数据元标识符的格式DEXX.XX.XXX.XX其中X表示0-9的数字。
+		数据元目录名称：									标识范围
+卫生信息数据元目录第1部分:总则 	
+卫生信息数据元目录第2部分:标识								DE01.00.001.00-DE01.00.015.00
+卫生信息数据元目录第3部分:人口学及社会经济学特征			DE02.01.001.00-DE02.01.058.00
+(DE02.01.009.01
+DE02.01.009.02
+DE02.01.009.03
+DE02.01.009.04
+DE02.01.009.05
+DE02.01.009.06
+DE02.01.005.01
+DE02.01.005.02
+
+)
+卫生信息数据元目录第4部分:健康史							DE02.10.001.00-DE02.10.096.00
+卫生信息数据元目录第5部分:健康危险因素						DE03.00.001.00-DE03.00.099.00
+卫生信息数据元目录第6部分:主诉与症状						DE04.01.001.00-DE04.01.120.00
+卫生信息数据元目录第7部分:体格检查							DE04.10.001.00-DE04.10.243.00
+卫生信息数据元目录第8部分:临床辅助检查						DE04.30.001.00-DE04.30.051.00
+卫生信息数据元目录第9部分:实验室检查						DE04.50.001.00-DE04.50.129.00
+卫生信息数据元目录第10部分:医学诊断							DE05.01.001.00-DE05.01.073.00
+卫生信息数据元目录第11部分:医学评估							DE05.10.001.00-DE05.10.128.00
+卫生信息数据元目录第12部分:计划与干预						DE06.00.001.00-DE06.00.177.00
+卫生信息数据元目录第13部分:卫生费用							DE07.00.001.00-DE07.00.010.00
+卫生信息数据元目录第14部分:卫生机构							DE08.10.001.00-DE08.10.053.00
+卫生信息数据元目录第15部分:卫生人员							DE08.30.001.00-DE08.30.031.00
+卫生信息数据元目录第16部分:药品、设备与材料					DE08.50.001.00-DE08.50.025.00
+卫生信息数据元目录第17部分:卫生管理							DE09.00.001.00-DE09.00.102.00	
+	数据元标识符在如上目录其中之一的正则表达式为：其中按照顺序，每一行对应的则为数据元所在目录的正则表达式
+DE((01\.00\.((00[1-9])|(01[0-5]))\.00)|
+(02\.01\.((((00[1-4])|(00[6-8])|(0[1-4][0-9])|(05[0-8]))\.00)|(005\.0[1-2])|(009.0[1-6])))|
+(02\.10\.((00[1-9])|(0[1-8][0-9])|(09[0-6]))\.00)|
+(03\.00\.((00[1-9])|(0[1-9][0-9]))\.00)|
+(04\.01\.((00[1-9])|(0[1-9][0-9])|(1[0-1][0-9])|(120))\.00)|
+(04\.10\.((00[1-9])|(0[1-9][0-9])|(1[0-9]{2})|2[0-3][0-9]|(24[0-3]))\.00)|
+(04\.30\.0((0[1-9])|([1-4][0-9])|(5[0-1]))\.00)|
+(04\.50\.((00[1-9])|([0-1][1-9][0-9]|(1[0-1][0-9]|(12[0-9]))))\.00)|
+(05\.01\.((00[1-9])|(0[1-6][0-9]|(0[1-6][0-9])|(07[0-3])))\.00)|
+(05\.10\.((00[1-9])|(0[1-9][0-9])|(1[0-1][0-9])|(12[0-8]))\.00)|
+(06\.00\.((00[1-9])|(0[1-9][0-9])|(1[0-6][0-9])|(17[0-7]))\.00)|
+(07\.00\.((00[1-9])|(010))\.00)|
+(08\.10\.((00[1-9])|(0[1-4][0-9])|(05[0-3]))\.00)|
+(08\.30\.((00[1-9])|(0[1-2][0-9])|(03[0-1]))\.00)|
+(08\.50\.((00[1-9])|(01[0-9])|(02[0-5]))\.00)|
+(09\.00\.((00[1-9])|(0[1-9][0-9])|(10[0-2]))\.00)
+)
+	-->	
+	<xs:simpleType name="标识_数据元标识符Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="DE01\.00\.0[0-1][0-5]\.00"/>		
+		</xs:restriction>		
+	</xs:simpleType>
+	<xs:simpleType name="人口学及社会经济学特征_数据元标识符Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="DE(02\.01\.((((00[1-4])|(00[6-8])|(0[1-4][0-9])|(05[0-8]))\.00)|(005\.0[1-2])|(009.0[1-6])))"/>		
+		</xs:restriction>		
+	</xs:simpleType>	
+	<xs:simpleType name="健康史_数据元标识符Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="DE02\.10\.((00[1-9])|(0[1-8][0-9])|(09[0-6]))\.00"/>		
+		</xs:restriction>		
+	</xs:simpleType>		
+	<xs:simpleType name="健康危险因素_数据元标识符Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="DE03\.00\.((00[1-9])|(0[1-9][0-9]))\.00"/>		
+		</xs:restriction>		
+	</xs:simpleType>		
+	<xs:simpleType name="主诉与症状_数据元标识符Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="DE04\.01\.((00[1-9])|(0[1-9][0-9])|(1[0-1][0-9])|(120))\.00"/>		
+		</xs:restriction>		
+	</xs:simpleType>		
+	<xs:simpleType name="体格检查_数据元标识符Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="DE04\.10\.((00[1-9])|(0[1-9][0-9])|(1[0-9]{2})|2[0-3][0-9]|(24[0-3]))\.00"/>		
+		</xs:restriction>		
+	</xs:simpleType>			
+	<xs:simpleType name="临床辅助检查_数据元标识符Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="DE04\.30\.0((0[1-9])|([1-4][0-9])|(5[0-1]))\.00"/>		
+		</xs:restriction>		
+	</xs:simpleType>				
+	<xs:simpleType name="实验室检查_数据元标识符Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="DE04\.50\.((00[1-9])|([0-1][1-9][0-9]|(1[0-1][0-9]|(12[0-9]))))\.00"/>		
+		</xs:restriction>		
+	</xs:simpleType>			
+	<xs:simpleType name="医学诊断_数据元标识符Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="DE05\.01\.((00[1-9])|(0[1-6][0-9]|(0[1-6][0-9])|(07[0-3])))\.00"/>		
+		</xs:restriction>		
+	</xs:simpleType>	
+	<xs:simpleType name="医学评估_数据元标识符Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="DE05\.10\.((00[1-9])|(0[1-9][0-9])|(1[0-1][0-9])|(12[0-8]))\.00"/>		
+		</xs:restriction>		
+	</xs:simpleType>		
+	<xs:simpleType name="计划与干预_数据元标识符Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="DE06\.00\.((00[1-9])|(0[1-9][0-9])|(1[0-6][0-9])|(17[0-7]))\.00"/>		
+		</xs:restriction>		
+	</xs:simpleType>			
+	<xs:simpleType name="卫生费用_数据元标识符Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="DE07\.00\.((00[1-9])|(010))\.00"/>		
+		</xs:restriction>		
+	</xs:simpleType>				
+	<xs:simpleType name="卫生机构_数据元标识符Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="DE08\.10\.((00[1-9])|(0[1-4][0-9])|(05[0-3]))\.00"/>		
+		</xs:restriction>		
+	</xs:simpleType>					
+	<xs:simpleType name="卫生人员_数据元标识符Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="DE08\.30\.((00[1-9])|(0[1-2][0-9])|(03[0-1]))\.00"/>		
+		</xs:restriction>		
+	</xs:simpleType>						
+	<xs:simpleType name="药品设备与材料_数据元标识符Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="DE08\.50\.((00[1-9])|(01[0-9])|(02[0-5]))\.00"/>		
+		</xs:restriction>		
+	</xs:simpleType>				
+	<xs:simpleType name="卫生管理_数据元标识符Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="DE09\.00\.((00[1-9])|(0[1-9][0-9])|(10[0-2]))\.00"/>		
+		</xs:restriction>		
+	</xs:simpleType>					
+	<xs:simpleType name="表示格式Type">
+		<xs:restriction base="xs:string">
+			<!--匹配出现的各种-->
+			<xs:pattern value="HDSD00\.01\.[0-9]{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

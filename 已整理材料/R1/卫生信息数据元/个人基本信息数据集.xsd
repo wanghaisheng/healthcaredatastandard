@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="居民基本信息.xsd"/>
+	<xs:include schemaLocation="居民基本健康信息.xsd"/>
+	<xs:element name="个人基本信息" type="个人基本信息type"/>
+	<xs:complexType name="个人基本信息type">
+		<xs:sequence>
+			<xs:element name="居民基础信息" type="居民基础信息type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="居民基本健康信息" type="居民基本健康信息type" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="居民基础信息type">
+		<xs:sequence>
+			<xs:element name="居民人口学信息" type="居民人口学信息type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="居民社会经济学信息" type="居民社会经济学信息type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="联系人信息" type="联系人信息type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="家庭基本设施情况" type="家庭基本设施情况type" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="居民基本健康信息type">
+		<xs:sequence>
+			<xs:element name="健康危险因素" type="健康危险因素type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="药物过敏史" type="药物过敏史type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="血型" type="血型type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="输血史" type="输血史type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="遗传病史" type="遗传病史type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="残疾情况" type="残疾情况type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="外伤史" type="外伤史type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="既往史" type="既往史type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="手术史" type="手术史type" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
