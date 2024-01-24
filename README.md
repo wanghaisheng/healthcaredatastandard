@@ -4,7 +4,8 @@ healthcaredatastandard
 
 looking for contributor 
 
-请添加我的微信
+请添加我的微信：edwin_whs
+edwin_uestc@163.com
 
 
 ## 概述
